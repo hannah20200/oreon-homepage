@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OREON Life Science — IR</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;word-break:keep-all;overflow-wrap:break-word;}
+h1,h2,h3{margin:0;}
+p{margin:0;}
+a{color:#5E88AF;text-decoration:none;}
+a:hover{color:#8FC0E3;}
+
+body.lang-ko .lang-en{display:none;}
+body:not(.lang-ko) .lang-ko{display:none;}
+
+.grain-overlay{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none!important;opacity:1!important;transform:none!important;}
+}
+
+.nav-who-wrap{position:relative;}
+.nav-who-dd{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:14px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s ease;}
+.nav-who-wrap:hover .nav-who-dd{opacity:1;visibility:visible;pointer-events:auto;}
+.nav-dd-item{display:block;padding:11px 14px;border-radius:8px;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:#9aa5b8;font-weight:600;white-space:nowrap;text-decoration:none;}
+.nav-dd-item:hover{background:#1c2740;color:#ffffff;}
+.nav-top-link{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:#9aa5b8;font-weight:600;white-space:nowrap;text-decoration:none;}
+.nav-top-link:hover{color:#ffffff;}
+.nav-top-link.active{color:#ffffff;}
+.nav-who-label{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:#9aa5b8;font-weight:600;white-space:nowrap;text-decoration:none;}
+.lang-btn{border:none;background:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:1.05rem;font-weight:600;letter-spacing:.05em;padding:0;}
+.footer-link{font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;}
+.footer-link:hover{color:#8FC0E3;}
+.social-btn{width:34px;height:34px;border-radius:50%;border:1px solid #1c2740;display:flex;align-items:center;justify-content:center;color:#9aa5b8;text-decoration:none;transition:border-color .15s ease,color .15s ease;}
+.social-btn:hover{border-color:#8FC0E3;color:#8FC0E3;}
+
+.section{padding-block:clamp(64px,9vw,108px);}
+.section-inner{max-width:1160px;margin:0 auto;padding-inline:24px;}
+.section-head{max-width:720px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:16px;}
+.eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#8FC0E3;font-weight:600;}
+.eyebrow::before,.eyebrow::after{content:'';width:24px;height:1px;background:#8FC0E3;opacity:.55;}
+.section-title{font-family:'Noto Serif KR',serif;font-weight:600;font-size:clamp(1.7rem,3.2vw,2.5rem);color:#eef1f6;line-height:1.3;max-width:600px;margin-inline:auto;}
+.section-body{color:#9fb0bd;font-size:.98rem;line-height:1.75;max-width:620px;margin:0 auto;}
+
+.glass{border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 24px 48px -30px rgba(2,5,10,.7);}
+@media (prefers-reduced-transparency:reduce){ .glass{background:#0d1826;backdrop-filter:none;} }
+
+.hero-ir{position:relative;overflow:hidden;}
+.hero-ir-inner{max-width:1080px;margin:0 auto;padding-inline:24px;padding-block:112px 56px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;}
+.hero-ir-title{font-family:'Noto Serif KR',serif;font-weight:500;font-size:clamp(1.9rem,4vw,3.1rem);color:#ffffff;line-height:1.3;}
+.hero-keyword{font-weight:700;color:#8FC0E3;}
+.hero-ir-sub{color:#9fb0bd;font-size:clamp(.98rem,1.3vw,1.08rem);line-height:1.75;max-width:56ch;}
+
+.board-panel{margin-top:0;padding:clamp(28px,4vw,44px);}
+.board-head{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.tab-row{display:flex;gap:10px;flex-wrap:wrap;}
+.tab-btn{border-radius:999px;padding:9px 20px;font-size:.8rem;letter-spacing:.03em;cursor:pointer;background:transparent;color:#c3ccd4;border:1px solid rgba(255,255,255,.22);font-family:'Noto Sans KR',sans-serif;transition:background .15s ease,color .15s ease,border-color .15s ease;}
+.tab-btn:hover{border-color:#8FC0E3;color:#eef1f6;}
+.tab-btn.active{background:#5E88AF;color:#ffffff;border-color:#5E88AF;}
+
+.search-wrap{position:relative;}
+.search-input{width:230px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 40px 10px 18px;font-size:.82rem;color:#eef1f6;outline:none;font-family:'Noto Sans KR',sans-serif;transition:border-color .15s ease;}
+.search-input:focus{border-color:#8FC0E3;}
+.search-input::placeholder{color:#7a8a99;}
+.search-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;}
+
+.board-table{margin-top:28px;border-top:1px solid rgba(255,255,255,.22);}
+.board-row-head{display:grid;grid-template-columns:72px 1fr 130px 150px;gap:16px;padding:16px 10px;border-bottom:1px solid rgba(255,255,255,.16);}
+.board-th{font-size:.78rem;font-weight:700;letter-spacing:.04em;color:#eef1f6;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;}
+.board-row{display:grid;grid-template-columns:72px 1fr 130px 150px;gap:16px;padding:19px 10px;border-bottom:1px solid rgba(255,255,255,.1);align-items:center;transition:background .15s ease;}
+.board-row:hover{background:rgba(255,255,255,.035);}
+.board-no{font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:#9fb0bd;}
+.board-title{font-size:.9rem;color:#dbe4ea;font-weight:500;}
+.board-title:hover{color:#8FC0E3;}
+.board-tag{justify-self:start;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#8FC0E3;border:1px solid rgba(143,192,227,.4);border-radius:999px;padding:4px 11px;white-space:nowrap;}
+.board-time{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:#9fb0bd;text-align:right;}
+.board-empty{display:none;padding:56px 10px;text-align:center;color:#7f8fa0;font-size:.88rem;}
+
+@media (max-width:720px){
+  .board-row-head,.board-row{grid-template-columns:44px 1fr 96px;}
+  .board-th.col-tag,.board-row .board-tag{display:none;}
+}
+
+.cta-panel{margin-top:clamp(48px,7vw,72px);padding:clamp(32px,5vw,52px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.cta-text{display:flex;flex-direction:column;gap:6px;max-width:520px;}
+.cta-title{font-family:'Noto Serif KR',serif;font-weight:600;font-size:1.3rem;color:#eef1f6;}
+.cta-sub{color:#9fb0bd;font-size:.9rem;line-height:1.65;}
+.cta-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:999px;background:#5E88AF;color:#ffffff;font-size:.84rem;font-weight:600;letter-spacing:.03em;white-space:nowrap;transition:background .15s ease;}
+.cta-btn:hover{background:#8FC0E3;color:#02050a;}
+</style>
+</head>
+<body>
+
+<div style="width:100%;background:linear-gradient(180deg,#02050a 0%,#050b13 18%,#0b2233 38%,#123a4d 58%,#3d6f8c 76%,#9fc0d1 90%,#dce8ee 100%);position:relative;">
+
+  <div class="grain-overlay"></div>
+
+  <div style="position:fixed;top:0;left:0;right:0;z-index:50;background:#000000;border-bottom:1px solid rgba(255,255,255,.15);">
+    <div style="max-width:1440px;margin:0 auto;padding-inline:24px;display:flex;align-items:center;gap:48px;height:88px;">
+      <a href="00. Homepage_Main Page.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <img src="assets/oreon-logo-symbol.png" alt="OREON LIFE SCIENCE" style="height:46px;display:block;">
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;flex:1;justify-content:center;">
+        <div class="nav-who-wrap">
+          <a href="00. Homepage_Main Page.dc.html" class="nav-who-label"><span>Who We Are</span></a>
+          <div class="nav-who-dd">
+            <div style="min-width:190px;background:#121a2c;border:1px solid #1c2740;border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:2px;box-shadow:0 20px 40px rgba(0,0,0,.4);">
+              <a href="01. Core Value.dc.html" class="nav-dd-item"><span>Core Value</span></a>
+              <a href="02. History.dc.html" class="nav-dd-item"><span>History</span></a>
+              <a href="03. CI.dc.html" class="nav-dd-item">CI</a>
+              <a href="04. CEO Message.dc.html" class="nav-dd-item"><span>CEO Message</span></a>
+              <a href="05. Philosophy.dc.html" class="nav-dd-item"><span>Philosophy</span></a>
+            </div>
+          </div>
+        </div>
+        <a href="10. Products.dc.html" class="nav-top-link"><span>Products</span></a>
+        <a href="06. R&amp;D.html" class="nav-top-link">R&amp;D</a>
+        <a href="07. IR.dc.html" class="nav-top-link active"><span>IR</span></a>
+        <a href="09. News.dc.html" class="nav-top-link"><span>News</span></a>
+        <a href="08. Contact.dc.html" class="nav-top-link"><span>Contact</span></a>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:14px;margin-left:auto;">
+        <button id="btn-en" class="lang-btn" style="color:#ffffff;" onclick="setLang('en')">EN</button>
+        <span style="color:#4a4a4a;font-size:1.05rem;">/</span>
+        <button id="btn-ko" class="lang-btn" style="color:#6b6f7d;" onclick="setLang('ko')">KO</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:88px;"></div>
+
+  <!-- 01 Hero -->
+  <div class="hero-ir">
+    <div class="hero-ir-inner">
+      <span class="eyebrow reveal js-reveal">
+        <span class="lang-en">Investor Relations</span>
+        <span class="lang-ko">투자자 정보</span>
+      </span>
+      <h1 class="hero-ir-title reveal js-reveal" style="transition-delay:.08s;">
+        <span class="lang-en">Information You Can <span class="hero-keyword">Trust</span>.</span>
+        <span class="lang-ko">신뢰할 수 있는 <span class="hero-keyword">정보</span>.</span>
+      </h1>
+      <p class="hero-ir-sub reveal js-reveal" style="transition-delay:.16s;">
+        <span class="lang-en">Rooted in timeless values, driven by innovation — creating a future that serves both people and progress.</span>
+        <span class="lang-ko">변하지 않는 가치에 뿌리를 두고 혁신을 향해 나아가며, 사람과 발전 모두에 기여하는 미래를 만들어갑니다.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 02 Disclosure Board -->
+  <div class="section">
+    <div class="section-inner">
+      <div class="glass board-panel reveal js-reveal" style="transition-delay:.1s;">
+        <div class="board-head">
+          <div class="tab-row" role="tablist">
+            <button class="tab-btn active" data-tab="all" onclick="setTab(this,'all')"><span class="lang-en">ALL</span><span class="lang-ko">전체</span></button>
+            <button class="tab-btn" data-tab="notice" onclick="setTab(this,'notice')"><span class="lang-en">NOTICE</span><span class="lang-ko">공지사항</span></button>
+            <button class="tab-btn" data-tab="financial" onclick="setTab(this,'financial')"><span class="lang-en">FINANCIAL DATA</span><span class="lang-ko">재무자료</span></button>
+            <button class="tab-btn" data-tab="archive" onclick="setTab(this,'archive')"><span class="lang-en">IR ARCHIVE</span><span class="lang-ko">IR 자료실</span></button>
+          </div>
+          <div class="search-wrap">
+            <input id="board-search" type="text" class="search-input" oninput="filterBoard()" placeholder="Search">
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9aa5b8" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+          </div>
+        </div>
+
+        <div class="board-table">
+          <div class="board-row-head">
+            <span class="board-th"><span class="lang-en">No</span><span class="lang-ko">번호</span></span>
+            <span class="board-th"><span class="lang-en">Title</span><span class="lang-ko">제목</span></span>
+            <span class="board-th col-tag"><span class="lang-en">Category</span><span class="lang-ko">분류</span></span>
+            <span class="board-th" style="text-align:right;"><span class="lang-en">Date</span><span class="lang-ko">등록일</span></span>
+          </div>
+
+          <div class="board-row" data-category="notice" data-title="Notice on Protection and Actions for Shareholders Subject to Electronic Securities Conversion 전자증권 전환 대상 주권 권리자(주주) 보호 및 조치사항 안내">
+            <span class="board-no">4</span>
+            <a href="#" class="board-title">
+              <span class="lang-en">Notice on Protection and Actions for Shareholders Subject to Electronic Securities Conversion</span>
+              <span class="lang-ko">전자증권 전환 대상 주권 권리자(주주) 보호 및 조치사항 안내</span>
+            </a>
+            <span class="board-tag"><span class="lang-en">Notice</span><span class="lang-ko">공지사항</span></span>
+            <span class="board-time"><span class="lang-en">30 Jun 2026</span><span class="lang-ko">2026.06.30</span></span>
+          </div>
+
+          <div class="board-row" data-category="financial" data-title="test">
+            <span class="board-no">3</span>
+            <a href="#" class="board-title"><span>test</span></a>
+            <span class="board-tag"><span class="lang-en">Financial Data</span><span class="lang-ko">재무자료</span></span>
+            <span class="board-time"><span class="lang-en">26 Sep 2025</span><span class="lang-ko">2025.09.26</span></span>
+          </div>
+
+          <div class="board-row" data-category="archive" data-title="test sample">
+            <span class="board-no">2</span>
+            <a href="#" class="board-title"><span>test sample</span></a>
+            <span class="board-tag"><span class="lang-en">IR Archive</span><span class="lang-ko">IR 자료실</span></span>
+            <span class="board-time"><span class="lang-en">24 Sep 2025</span><span class="lang-ko">2025.09.24</span></span>
+          </div>
+
+          <div class="board-row" data-category="notice" data-title="test sample">
+            <span class="board-no">1</span>
+            <a href="#" class="board-title"><span>test sample</span></a>
+            <span class="board-tag"><span class="lang-en">Notice</span><span class="lang-ko">공지사항</span></span>
+            <span class="board-time"><span class="lang-en">24 Sep 2025</span><span class="lang-ko">2025.09.24</span></span>
+          </div>
+
+          <div class="board-empty" id="board-empty">
+            <span class="lang-en">No results found.</span>
+            <span class="lang-ko">검색 결과가 없습니다.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 IR Contact CTA -->
+      <div class="glass cta-panel reveal js-reveal" style="transition-delay:.16s;">
+        <div class="cta-text">
+          <span class="cta-title"><span class="lang-en">Have a question for our IR team?</span><span class="lang-ko">IR 관련 문의사항이 있으신가요?</span></span>
+          <span class="cta-sub"><span class="lang-en">Reach out through our Contact page and our team will follow up.</span><span class="lang-ko">Contact 페이지를 통해 문의해 주시면 담당자가 확인 후 안내해 드립니다.</span></span>
+        </div>
+        <a href="08. Contact.dc.html" class="cta-btn">
+          <span class="lang-en">Contact Us</span><span class="lang-ko">문의하기</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="background:#000000;border-top:1px solid #1c1c1c;">
+    <div style="max-width:1440px;margin:0 auto;padding-inline:24px;padding-block:56px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:40px;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <img src="assets/oreon-logo-symbol.png" alt="OREON LIFE SCIENCE" style="height:36px;width:auto;align-self:flex-start;display:block;">
+        <p style="color:#5c6577;font-size:.82rem;line-height:1.7;max-width:240px;">OREON Life Science Co., Ltd.</p>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <a href="#" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1"></circle></svg>
+          </a>
+          <a href="#" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2 2 0 11-.02 4.01A2 2 0 014.98 3.5zM3 8.98h4v11.52H3zM9.5 8.98h3.83v1.58h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.14v6.86h-4v-6.08c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21v6.19h-4V8.98z"></path></svg>
+          </a>
+          <a href="#" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="3"></rect><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;color:#eef1f6;padding-bottom:10px;border-bottom:1px solid #1c2740;">ABOUT US</span>
+        <a href="01. Core Value.dc.html" class="footer-link"><span>Core Value</span></a>
+        <a href="02. History.dc.html" class="footer-link"><span>History</span></a>
+        <a href="03. CI.dc.html" class="footer-link">CI</a>
+        <a href="04. CEO Message.dc.html" class="footer-link"><span>CEO Message</span></a>
+        <a href="05. Philosophy.dc.html" class="footer-link"><span>Philosophy</span></a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;color:#eef1f6;padding-bottom:10px;border-bottom:1px solid #1c2740;">R&amp;D</span>
+        <a href="06. R&amp;D.html" class="footer-link">Translational Innovation</a>
+        <a href="06. R&amp;D.html" class="footer-link">AMPHEXON&trade; Technology</a>
+        <a href="06. R&amp;D.html" class="footer-link">Biomaterials</a>
+        <a href="06. R&amp;D.html" class="footer-link">Open Innovation</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;color:#eef1f6;padding-bottom:10px;border-bottom:1px solid #1c2740;">MATERIAL</span>
+        <a href="06. R&amp;D.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">HA</a>
+        <a href="06. R&amp;D.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">PLLA</a>
+        <a href="06. R&amp;D.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">CaHA</a>
+        <a href="06. R&amp;D.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">rH Collagen</a>
+        <a href="06. R&amp;D.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">ECM</a>
+      </div>
+    </div>
+
+    <div style="max-width:1440px;margin:0 auto;padding-inline:24px;padding-block:20px;border-top:1px solid #1c2740;">
+      <span style="color:#5c6577;font-size:.76rem;">OREON Life Science Co., Ltd. All Right Reserved.</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-ko', lang === 'ko');
+  document.getElementById('btn-en').style.color = lang === 'en' ? '#ffffff' : '#6b6f7d';
+  document.getElementById('btn-ko').style.color = lang === 'ko' ? '#ffffff' : '#6b6f7d';
+  document.documentElement.lang = lang;
+}
+
+var activeTab = 'all';
+
+function setTab(btn, tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  filterBoard();
+}
+
+function filterBoard() {
+  var query = document.getElementById('board-search').value.trim().toLowerCase();
+  var rows = document.querySelectorAll('.board-row');
+  var visibleCount = 0;
+  rows.forEach(function (row) {
+    var matchesTab = activeTab === 'all' || row.getAttribute('data-category') === activeTab;
+    var matchesQuery = !query || row.getAttribute('data-title').toLowerCase().indexOf(query) !== -1;
+    var show = matchesTab && matchesQuery;
+    row.style.display = show ? 'grid' : 'none';
+    if (show) visibleCount++;
+  });
+  document.getElementById('board-empty').style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.js-reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>
