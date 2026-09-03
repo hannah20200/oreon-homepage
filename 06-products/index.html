@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OREON Life Science — Products</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;word-break:keep-all;overflow-wrap:break-word;}
+h1,h2,h3{margin:0;}
+p{margin:0;}
+a{color:#5E88AF;text-decoration:none;}
+a:hover{color:#8FC0E3;}
+
+body.lang-ko .lang-en{display:none;}
+body:not(.lang-ko) .lang-ko{display:none;}
+
+.grain-overlay{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none!important;opacity:1!important;transform:none!important;}
+}
+
+.nav-who-wrap{position:relative;}
+.nav-who-dd{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:14px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s ease;}
+.nav-who-wrap:hover .nav-who-dd{opacity:1;visibility:visible;pointer-events:auto;}
+.nav-dd-item{display:block;padding:11px 14px;border-radius:8px;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:#9aa5b8;font-weight:600;white-space:nowrap;text-decoration:none;}
+.nav-dd-item:hover{background:#1c2740;color:#ffffff;}
+.nav-top-link{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:#ffffff;font-weight:600;white-space:nowrap;text-decoration:none;}
+.nav-top-link:hover{color:#ffffff;}
+.nav-top-link.active{color:#ffffff;}
+.nav-who-label{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;color:#ffffff;font-weight:600;white-space:nowrap;text-decoration:none;}
+.lang-btn{border:none;background:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:1.05rem;font-weight:600;letter-spacing:.05em;padding:0;}
+.footer-link{font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;}
+.footer-link:hover{color:#8FC0E3;}
+.social-btn{width:34px;height:34px;border-radius:50%;border:1px solid #1c2740;display:flex;align-items:center;justify-content:center;color:#9aa5b8;text-decoration:none;transition:border-color .15s ease,color .15s ease;}
+.social-btn:hover{border-color:#8FC0E3;color:#8FC0E3;}
+
+.section{padding-block:clamp(48px,7vw,88px);}
+.section-inner{max-width:1280px;margin:0 auto;padding-inline:24px;}
+.section-head{max-width:720px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:16px;}
+.eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#8FC0E3;font-weight:600;}
+.eyebrow::before,.eyebrow::after{content:'';width:24px;height:1px;background:#8FC0E3;opacity:.55;}
+.section-title{font-family:'Noto Serif KR',serif;font-weight:600;font-size:clamp(1.7rem,3.2vw,2.5rem);color:#eef1f6;line-height:1.3;max-width:600px;margin-inline:auto;}
+.section-body{color:#9fb0bd;font-size:.98rem;line-height:1.75;max-width:620px;margin:0 auto;}
+
+.glass{border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 24px 48px -30px rgba(2,5,10,.7);}
+@media (prefers-reduced-transparency:reduce){ .glass{background:#0d1826;backdrop-filter:none;} }
+
+.hero-prod{position:relative;overflow:hidden;}
+.hero-prod-inner{max-width:1080px;margin:0 auto;padding-inline:24px;padding-block:112px 56px;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;}
+.hero-prod-title{font-family:'Noto Serif KR',serif;font-weight:500;font-size:clamp(1.9rem,4vw,3.1rem);color:#ffffff;line-height:1.3;}
+.hero-keyword{font-weight:700;color:#8FC0E3;}
+.hero-prod-sub{color:#9fb0bd;font-size:clamp(.98rem,1.3vw,1.08rem);line-height:1.75;max-width:60ch;}
+
+.material-grid{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;}
+.material-card{position:relative;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:4/5;text-decoration:none;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s ease;}
+.material-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.material-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 12%,color-mix(in srgb,var(--accent) 32%,transparent),transparent 62%);opacity:.9;pointer-events:none;}
+.material-name{position:relative;z-index:1;font-family:'Noto Serif KR',serif;font-weight:600;font-size:1.35rem;color:#eef1f6;}
+</style>
+</head>
+<body>
+
+<div style="width:100%;background:linear-gradient(180deg,#02050a 0%,#050b13 18%,#0b2233 38%,#123a4d 58%,#3d6f8c 76%,#9fc0d1 90%,#dce8ee 100%);position:relative;">
+
+  <div class="grain-overlay"></div>
+
+  
+
+  <!-- 01 Hero -->
+  <div class="hero-prod">
+    <div class="hero-prod-inner">
+      <span class="eyebrow reveal js-reveal">
+        <span class="lang-en">Product Portfolio</span>
+        <span class="lang-ko">프로덕트 포트폴리오</span>
+      </span>
+      <h1 class="hero-prod-title reveal js-reveal" style="transition-delay:.08s;">
+        <span class="lang-en">Science, Transformed into <span class="hero-keyword">Solutions</span>.</span>
+        <span class="lang-ko">과학, <span class="hero-keyword">솔루션</span>으로 완성되다.</span>
+      </h1>
+      <p class="hero-prod-sub reveal js-reveal" style="transition-delay:.16s;">
+        <span class="lang-en">Explore OREON's medical aesthetics portfolio across diverse biomaterials, differentiated formulations, and applications.</span>
+        <span class="lang-ko">다양한 바이오머티리얼과 차별화된 제형, 폭넓은 적용 분야에 걸친 OREON의 메디컬 에스테틱 포트폴리오를 만나보세요.</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 02 Materials Grid -->
+  <div class="section">
+    <div class="section-inner">
+      <div class="material-grid">
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#5E88AF;transition-delay:.02s;">
+          <h3 class="material-name">HA</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#8a6a3d;transition-delay:.04s;">
+          <h3 class="material-name">PLLA</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#b3679e;transition-delay:.06s;">
+          <h3 class="material-name">PNLA</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#b26a5a;transition-delay:.08s;">
+          <h3 class="material-name">PN</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#6b7280;transition-delay:.1s;">
+          <h3 class="material-name">CAHA</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#a9862e;transition-delay:.12s;">
+          <h3 class="material-name">Collagen</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#5c6b80;transition-delay:.14s;">
+          <h3 class="material-name">ECM</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#3a7ea8;transition-delay:.16s;">
+          <h3 class="material-name">Exosome</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#b2703b;transition-delay:.18s;">
+          <h3 class="material-name"><span class="lang-en">Thread Lifting</span><span class="lang-ko">Thread Lifting</span></h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#6f5fa3;transition-delay:.2s;">
+          <h3 class="material-name">Cartridge</h3>
+        </a>
+        <a href="#" class="material-card glass reveal js-reveal" style="--accent:#8a5a68;transition-delay:.22s;">
+          <h3 class="material-name">ETC</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#000000;border-top:1px solid #1c1c1c;">
+    <div style="max-width:1440px;margin:0 auto;padding-inline:24px;padding-block:56px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:40px;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <img src="assets/oreon-logo-symbol.png" alt="OREON LIFE SCIENCE" style="height:36px;width:auto;align-self:flex-start;display:block;">
+        <p style="color:#5c6577;font-size:.82rem;line-height:1.7;max-width:240px;">OREON Life Science Co., Ltd.</p>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <a href="#" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1"></circle></svg>
+          </a>
+          <a href="#" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2 2 0 11-.02 4.01A2 2 0 014.98 3.5zM3 8.98h4v11.52H3zM9.5 8.98h3.83v1.58h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.14v6.86h-4v-6.08c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21v6.19h-4V8.98z"></path></svg>
+          </a>
+          <a href="#" class="social-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="3"></rect><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;color:#eef1f6;padding-bottom:10px;border-bottom:1px solid #1c2740;">ABOUT US</span>
+        <a href="01. Core Value.html" class="footer-link"><span>Core Value</span></a>
+        <a href="02. History.html" class="footer-link"><span>History</span></a>
+        <a href="03. CI.html" class="footer-link">CI</a>
+        <a href="04. CEO Message.html" class="footer-link"><span>CEO Message</span></a>
+        <a href="05. Philosophy.html" class="footer-link"><span>Philosophy</span></a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <span style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;color:#eef1f6;padding-bottom:10px;border-bottom:1px solid #1c2740;">R&amp;D</span>
+        <a href="07. RD.html" class="footer-link">Translational Innovation</a>
+        <a href="07. RD.html" class="footer-link">AMPHEXON&trade; Technology</a>
+        <a href="07. RD.html" class="footer-link">Biomaterials</a>
+        <a href="07. RD.html" class="footer-link">Open Innovation</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;font-weight:700;color:#eef1f6;padding-bottom:10px;border-bottom:1px solid #1c2740;">MATERIAL</span>
+        <a href="07. RD.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">HA</a>
+        <a href="07. RD.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">PLLA</a>
+        <a href="07. RD.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">CaHA</a>
+        <a href="07. RD.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">rH Collagen</a>
+        <a href="07. RD.html" style="font-size:.82rem;color:#9aa5b8;font-weight:500;text-decoration:none;">ECM</a>
+      </div>
+    </div>
+
+    <div style="max-width:1440px;margin:0 auto;padding-inline:24px;padding-block:20px;border-top:1px solid #1c2740;">
+      <span style="color:#5c6577;font-size:.76rem;">OREON Life Science Co., Ltd. All Right Reserved.</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-ko', lang === 'ko');
+  document.getElementById('btn-en').style.color = lang === 'en' ? '#ffffff' : '#6b6f7d';
+  document.getElementById('btn-ko').style.color = lang === 'ko' ? '#ffffff' : '#6b6f7d';
+  document.documentElement.lang = lang;
+}
+
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.js-reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>
